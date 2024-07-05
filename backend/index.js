@@ -5,6 +5,10 @@ const port = 5000;
 
 app.use(express.json());
 
+app.get('/api', (req, res) => {
+  res.send('Hello from the backend!');
+});
+
 app.post('/scan', (req, res) => {
   const { url } = req.body;
   exec(`zap-cli quick-scan ${url}`, (error, stdout, stderr) => {
