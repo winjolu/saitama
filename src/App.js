@@ -140,6 +140,7 @@ function App() {
           <strong>Reference:</strong> {result.reference && result.reference.split('\n').map((ref, idx) => <div key={idx}>{ref}</div>)}<br />
           <strong>Solution:</strong> {result.solution}<br />
           <strong>Risk:</strong> {result.risk}<br />
+          <strong>Confidence:</strong> {result.confidence}<br />
           <strong>Tags:</strong> {result.tags && Object.entries(result.tags).map(([key, value]) => <div key={key}>{key}: {value}</div>)}
         </ResultDetails>
       </ResultItem>

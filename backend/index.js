@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 
 const app = express();
 const port = 5000;
-const zapApiKey = process.env.ZAP_API_KEY;
+const zapApiKey = process.env.ZAP_API_KEY || 'lb85tf1jkoelv5kcetbekhpam8';
 
 app.use(bodyParser.json());
 app.use(cors()); // Use cors
