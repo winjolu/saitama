@@ -102,6 +102,9 @@ dist/
 # Optional stylelint cache
 .stylelintcache
 
+# secrets
+.env
+
 # Yarn v2
 .yarn/cache
 .yarn/unplugged
