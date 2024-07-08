@@ -85,8 +85,64 @@ const ResultItem = styled.div`
 const ResultTitle = styled.h2`
   margin: 0;
   margin-bottom: 10px;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #58a6ff;
+`;
+
+const RiskConfidence = styled.div`
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Risk = styled.div`
+  display: flex;
+  align-items: center;
+  color: #58a6ff;
+  font-size: 1.2rem;
+  margin: 5px 0;
+`;
+
+const RiskValue = styled.span`
+  margin-left: 5px;
+  color: ${(props) => {
+    switch (props.risk) {
+      case 'High':
+        return 'red';
+      case 'Medium':
+        return 'yellow';
+      case 'Low':
+        return 'green';
+      case 'Informational':
+        return '#1877F2';
+      default:
+        return '#c9d1d9';
+    }
+  }};
+`;
+
+const Confidence = styled.div`
+  display: flex;
+  align-items: center;
+  color: #58a6ff;
+  font-size: 1.2rem;
+  margin: 5px 0;
+`;
+
+const ConfidenceValue = styled.span`
+  margin-left: 5px;
+  color: ${(props) => {
+    switch (props.confidence) {
+      case 'High':
+        return 'green';
+      case 'Medium':
+        return 'yellow';
+      case 'Low':
+        return 'red';
+      default:
+        return '#c9d1d9';
+    }
+  }};
 `;
 
 const ResultDescription = styled.p`
@@ -131,6 +187,10 @@ function App() {
     return results.map((result, index) => (
       <ResultItem key={index}>
         <ResultTitle>{result.alert}</ResultTitle>
+        <RiskConfidence>
+          <Risk>Risk: <RiskValue risk={result.risk}>{result.risk}</RiskValue></Risk>
+          <Confidence>Confidence: <ConfidenceValue confidence={result.confidence}>{result.confidence}</ConfidenceValue></Confidence>
+        </RiskConfidence>
         <ResultDescription>{result.description}</ResultDescription>
         <ResultDetails>
           <strong>URL:</strong> {result.url}<br />
@@ -139,8 +199,6 @@ function App() {
           <strong>Other Info:</strong> {result.other}<br />
           <strong>Reference:</strong> {result.reference && result.reference.split('\n').map((ref, idx) => <div key={idx}>{ref}</div>)}<br />
           <strong>Solution:</strong> {result.solution}<br />
-          <strong>Risk:</strong> {result.risk}<br />
-          <strong>Confidence:</strong> {result.confidence}<br />
           <strong>Tags:</strong> {result.tags && Object.entries(result.tags).map(([key, value]) => <div key={key}>{key}: {value}</div>)}
         </ResultDetails>
       </ResultItem>
